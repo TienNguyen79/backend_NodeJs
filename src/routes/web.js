@@ -3,6 +3,10 @@ const {
   getHomePage,
   getSample,
   getR2,
+  postCreateUser,
+  getCreate,
+  getUpdatePage,
+  updateUser,
 } = require("../controllers/homeController");
 const router = express.Router();
 const router2 = express.Router();
@@ -16,8 +20,12 @@ router.get("/", (req, res) => {
 });
 
 router.get("/sam", getSample);
+router.get("/create", getCreate);
+router.post("/create-user", postCreateUser);
+router.post("/update-user", updateUser);
+router.get("/update/:id", getUpdatePage);
 
 //route2
 router2.get("/hi2", getR2);
 
-module.exports = { router, router2 }; //export default xong import chỗ khác đặt tên là gì cũng được
+module.exports = { router, router2 };

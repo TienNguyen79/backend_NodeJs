@@ -9,4 +9,4 @@ const configViewEngine = (app) => {
   app.use(express.static(path.join("./src", "public")));
 };
 
-module.exports = configViewEngine;
+module.exports = configViewEngine; //nếu là export default(không có ngoặc) xong import chỗ khác đặt tên là gì cũng được

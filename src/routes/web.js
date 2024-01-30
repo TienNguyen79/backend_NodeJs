@@ -7,6 +7,7 @@ const {
   getCreate,
   getUpdatePage,
   updateUser,
+  deleteUser,
 } = require("../controllers/homeController");
 const router = express.Router();
 const router2 = express.Router();
@@ -23,6 +24,7 @@ router.get("/sam", getSample);
 router.get("/create", getCreate);
 router.post("/create-user", postCreateUser);
 router.post("/update-user", updateUser);
+router.post("/delete-user", deleteUser);
 router.get("/update/:id", getUpdatePage);
 
 //route2

@@ -8,9 +8,24 @@ const {
   deleteArrCustomerService,
 } = require("../service/customerService");
 const { uploadSingleFile } = require("../service/fileService");
-
+const Joi = require("joi");
 const postCreateUserApi = async (req, res) => {
   let { name, address, phone, email, description } = req.body;
+
+  const schema = Joi.object({
+    name: Joi.string().min(3).max(30).required(),
+    address: Joi.string(),
+    phone: Joi.string().pattern(new RegExp("^[0-9]{8,11}$")),
+    email: Joi.string().email(),
+    description: Joi.string(),
+  });
+  const results = schema.validate(req.body); //{ abortEarly: false } : để hiển thị tất cả lỗi
+
+  let { error } = results;
+
+  if (error) {
+    return res.status(400).json({ ms: error.details[0].message });
+  }
 
   // console.log("🚀 ~ postCreateUserApi ~ req.files:", Object.keys(req.files));
   let imageUrl = "";

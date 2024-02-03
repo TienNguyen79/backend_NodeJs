@@ -4,7 +4,7 @@ require("dotenv").config();
 const configViewEngine = require("./config/viewEngine");
 const { router, router2 } = require("./routes/web");
 const connection = require("./config/database");
-// const { MongoClient } = require("mongodb"); //cái này dùng cho cach 2 mongodb driver
+const { MongoClient } = require("mongodb"); //cái này dùng cho cach 2 mongodb driver
 const { routerAPI } = require("./routes/api");
 // const webRoutes2 = require("./routes/web");
 const fileUpload = require("express-fileupload");

@@ -16,6 +16,16 @@ const {
   deleteCustomerApi,
   deleteArrCustomerApi,
 } = require("../controllers/customerController");
+const {
+  createProjectApi,
+  getProjectApi,
+  updateProjectApi,
+  deleteProjectApi,
+  createTaskApi,
+  getTaskApi,
+  updateTaskApi,
+  deleteTaskApi,
+} = require("../controllers/productController");
 
 const routerAPI = express.Router();
 const router2 = express.Router();
@@ -58,6 +68,15 @@ routerAPI.get("/info/:name/:address", (req, res) => {
   return res.status(200).json({ data: req.params });
 });
 
+routerAPI.post("/projects", createProjectApi);
+routerAPI.get("/projects", getProjectApi);
+routerAPI.put("/projects", updateProjectApi);
+routerAPI.delete("/projects", deleteProjectApi);
+
+routerAPI.post("/tasks", createTaskApi);
+routerAPI.get("/tasks", getTaskApi);
+routerAPI.put("/tasks", updateTaskApi);
+routerAPI.delete("/tasks", deleteTaskApi);
 // //route2
 // router2.get("/hi2", getR2);
 

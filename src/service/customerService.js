@@ -36,17 +36,25 @@ const createArrCustomerService = async (arr) => {
 const getAllCustomerService = async (limit, page, queryString) => {
   try {
     let results = null;
+    let length = "";
     if (limit && page) {
       let offset = (page - 1) * limit;
       const { filter } = aqp(queryString); // thư viện api-query-params
       delete filter.page;
-      console.log("🚀 ~ getAllCustomerService ~ filter:", filter);
 
       results = await Customer.find(filter).skip(offset).limit(limit).exec();
+
+      let totalFind = await Customer.find(filter);
+      length = totalFind.length;
     } else {
       results = await Customer.find({});
     }
-    return results;
+
+    return {
+      results: results,
+      total: limit ? Math.ceil(length / limit) : length,
+      page: page,
+    };
   } catch (error) {
     console.log("🚀 ~ getAllCustomerService ~ error:", error);
     return null;
